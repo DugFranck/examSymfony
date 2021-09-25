@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <h1>Register</h1>
+
+    {{ form_start(registerForm) }}
+        {{ form_row(registerForm.email) }}
+        {{ form_row(registerForm.password, {
+            label: 'Password'
+        }) }}
+    {{ form_row(registerForm.nom) }}
+    {{ form_row(registerForm.prenom) }}
+        {{ form_row(registerForm.agreeTerms, {
+            label: 'J\'accepter les CGU'
+        }) }}
+
+
+    {{ form_end(registerForm) }}
+{% endblock %}
