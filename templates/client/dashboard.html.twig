@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard
+{% endblock %}
+
+{% block body %}
+
+    <style>
+        tr span{
+            margin-right: 20px;
+        }
+
+    </style>
+    <div class="container">
+        <h1>Dashboard</h1>
+    <a href="{{path('produit_create_modify')}}">Ajouter un produit +</a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Nom de l'objet</th>
+                <th>Prix</th>
+                <th>Ajouté le</th>
+                <th>Retirer de la vente</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for produit in produits %}
+            <tr>
+                <td><span>{{ produit.nom }}</span>
+                    {% if produit.image is not null %}
+                        <img src="{{ asset('uploads/'~produit.image) }}" alt="" width="100px" height="100px">
+                    {% endif %}
+                </td>
+                <td>{{ produit.prix }}</td>
+                <td>{{ produit.date |date("d/m/Y") }}</td>
+                <td>
+                    {% if produit.statut %}
+                        <a class="btn btn-primary" href="/client/dashboardCheck/produit/{{produit.id}}" >Retirer de la vente </a>
+                    {% else %}
+                        <a class="btn btn-warning" href="/client/dashboardCheck/produit/{{produit.id}}">Mettre en vente</a>
+                    {% endif %}
+                </td>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+{% endblock %}
