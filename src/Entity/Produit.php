@@ -45,7 +45,21 @@ class Produit
     /**
      * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="produits")
      */
-    private $clientId;
+    private $client;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date;
+
+    /**
+     * Produit constructor.
+     */
+    public function __construct()
+    {
+
+    }
+
 
     public function getId(): ?int
     {
@@ -112,14 +126,26 @@ class Produit
         return $this;
     }
 
-    public function getClientId(): ?Client
+    public function getClient(): ?Client
     {
-        return $this->clientId;
+        return $this->client;
     }
 
-    public function setClientId(?Client $clientId): self
+    public function setClient(?Client $clientId): self
     {
-        $this->clientId = $clientId;
+        $this->client = $clientId;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }

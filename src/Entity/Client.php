@@ -177,7 +177,7 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->produits->contains($produit)) {
             $this->produits[] = $produit;
-            $produit->setClientId($this);
+            $produit->setClient($this);
         }
 
         return $this;
@@ -187,8 +187,8 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->produits->removeElement($produit)) {
             // set the owning side to null (unless already changed)
-            if ($produit->getClientId() === $this) {
-                $produit->setClientId(null);
+            if ($produit->getClient() === $this) {
+                $produit->setClient(null);
             }
         }
 
